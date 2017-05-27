@@ -1,7 +1,7 @@
 {
   "name": "shed",
   "version": "0.0.1",
-  "description": "A cool React component",
+  "description": "Helper functions for Javascript objects and stuff",
   "entry": "index.js",
   "scripts": {
     "start": "./node_modules/.bin/webpack-dev-server --watch-stdin --colors",
@@ -13,32 +13,27 @@
     "node": ">=4.5.0",
     "npm": "^3.0.0"
   },
+  "jest": {
+    "testPathIgnorePatterns": [
+      "__tests__/__support__"
+    ]
+  },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/yourGitUsername/shed.git"
+    "url": "git+https://github.com/MainShayne233/shed.git"
   },
-  "author": "yourGitUsername",
+  "author": "MainShayne233",
   "license": "MIT",
-  "dependencies": {
-    "react": "^15.5.4",
-    "react-dom": "^15.0.0"
-  },
   "devDependencies": {
     "babel-core": "^6.17.0",
     "babel-jest": "^20.0.1",
     "babel-loader": "^6.2.5",
     "babel-plugin-transform-runtime": "^6.15.0",
     "babel-preset-es2015": "^6.14.0",
-    "babel-preset-react": "^6.11.1",
-    "babel-preset-react-hmre": "^1.1.1",
     "babel-preset-stage-0": "^6.3.13",
     "babel-runtime": "^6.11.6",
     "chai": "^3.5.0",
-    "enzyme": "^2.8.2",
     "jest": "^20.0.1",
-    "react-addons-test-utils": "^15.0.0",
-    "react-hot-loader": "^3.0.0-beta.7",
-    "react-test-renderer": "^15.5.4",
     "sinon": "^2.2.0",
     "webpack": "^2.5.1",
     "webpack-dev-server": "^2.4.5",

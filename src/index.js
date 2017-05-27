@@ -1,2 +1,3 @@
-export { default as object } from './object'
-
+module.exports = {
+  object: require('./object'),
+}
