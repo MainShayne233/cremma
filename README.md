@@ -2,6 +2,8 @@
 
 Utility functions for Javascript with a preference for immutability
 
+[![Build Status](https://travis-ci.org/MainShayne233/shed.svg?branch=master)](https://travis-ci.org/MainShayne233/shed)
+
 ## Use
 Install in your project
 ```bash
