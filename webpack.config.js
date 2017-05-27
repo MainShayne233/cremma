@@ -58,6 +58,14 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.css$/,
+        use: [
+          'style-loader',
+          'css-loader',
+        ],
+        include: /flexboxgrid/,
+      },
+      {
         test: /\.scss$/,
         use: [
           'style-loader',

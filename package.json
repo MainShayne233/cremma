@@ -1,13 +1,13 @@
 {
-  "name": "react-component-boilerplate",
+  "name": "shed",
   "version": "0.0.1",
-  "description": "starting place for creating a react component",
+  "description": "A cool React component",
   "entry": "index.js",
   "scripts": {
-    "setup": "npm i && node scripts/setup.js",
     "start": "./node_modules/.bin/webpack-dev-server --watch-stdin --colors",
     "build": "NODE_ENV=production ./node_modules/.bin/webpack -p --config webpack.config.js",
-    "test": "./node_modules/.bin/jest"
+    "test": "./node_modules/.bin/jest",
+    "test:watch": "./node_modules/.bin/jest --watch"
   },
   "engines": {
     "node": ">=4.5.0",
@@ -15,9 +15,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/MainShayne233/react-component-boilerplate.git"
+    "url": "git+https://github.com/yourGitUsername/shed.git"
   },
-  "author": "MainShayne233",
+  "author": "yourGitUsername",
   "license": "MIT",
   "dependencies": {
     "react": "^15.5.4",

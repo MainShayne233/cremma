@@ -1,1 +1,2 @@
-export {default as Counter} from './components/counter_container'
+export { default as object } from './object'
+
