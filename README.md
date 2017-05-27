@@ -1,18 +1,18 @@
-# shed
+# cremma
 
 Utility functions for Javascript with a preference for immutability
 
-[![Build Status](https://travis-ci.org/MainShayne233/shed.svg?branch=master)](https://travis-ci.org/MainShayne233/shed)
+[![Build Status](https://travis-ci.org/MainShayne233/cremma.svg?branch=master)](https://travis-ci.org/MainShayne233/cremma)
 
 ## Use
 Install in your project
 ```bash
-npm i --save shed
+npm i --save cremma
 ```
 
 Import modules wherever you want to use them
 ```javascript
-import { object } from 'shed'
+import { object } from 'cremma'
 
 const sampleObject1 = {
   hi: 'there',
@@ -42,8 +42,8 @@ object.equivalent( sampleObject1, sampleObject2 )
 ## Development
 Clone and enter the repo, and install deps
 ```bash
-git clone https://github.com/MainShayne233/shed.git
-cd shed
+git clone https://github.com/MainShayne233/cremma.git
+cd cremma
 npm i
 ```
 and make changes in `src`

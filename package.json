@@ -1,5 +1,5 @@
 {
-  "name": "shed",
+  "name": "cremma",
   "version": "0.0.1",
   "description": "Helper functions for Javascript objects and stuff",
   "entry": "index.js",
@@ -20,7 +20,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/MainShayne233/shed.git"
+    "url": "git+https://github.com/MainShayne233/cremma.git"
   },
   "author": "MainShayne233",
   "license": "MIT",
