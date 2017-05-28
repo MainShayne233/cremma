@@ -4,8 +4,6 @@ Utility functions for Javascript with a preference for immutability
 
 [![Build Status](https://travis-ci.org/MainShayne233/cremma.svg?branch=master)](https://travis-ci.org/MainShayne233/cremma)
 
-Checks the [docs](docs/index.md) for available modules/functions
-
 ## Use
 Install in your project
 ```bash

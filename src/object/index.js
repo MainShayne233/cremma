@@ -3,7 +3,7 @@
  * Equivlanet means that every value at every level is equal in both objects
  * @params {object} object1 - First object
  * @params {object} object2 - Second object
- * @returns {object}
+ * @returns {boolean}
  * @example
  * equivalent({hi: {how: 'are you'}}, {hi: {how: 'are you'}})
  * //=> true

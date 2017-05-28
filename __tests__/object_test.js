@@ -2,10 +2,14 @@ import { expect } from 'chai'
 import { object } from '../src'
 import { sampleObject1, sampleObject2 } from './__support__/helpers/fixtures/objects'
 import { sampleArray1, sampleArray2 } from './__support__/helpers/fixtures/arrays'
+import doctest from '../docs/doctest'
 
 describe('object', () => {
 
+
   describe('equivalent/2', () =>  {
+
+    doctest('./src/object/index.js')
 
     it('should return true if two objects are equivalent', () => {
       const clonedObject = JSON.parse( JSON.stringify(sampleObject1) )

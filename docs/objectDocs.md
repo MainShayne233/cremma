@@ -1,7 +1,7 @@
 ## Functions
 
 <dl>
-<dt><a href="#equivalent">equivalent()</a> ⇒ <code>object</code></dt>
+<dt><a href="#equivalent">equivalent()</a> ⇒ <code>boolean</code></dt>
 <dd><p>Returns true if objects are equivalent, false otherwise
 Equivlanet means that every value at every level is equal in both objects</p>
 </dd>
@@ -13,7 +13,7 @@ object2 will overwrite matching keys in object1</p>
 
 <a name="equivalent"></a>
 
-## equivalent() ⇒ <code>object</code>
+## equivalent() ⇒ <code>boolean</code>
 Returns true if objects are equivalent, false otherwise
 Equivlanet means that every value at every level is equal in both objects
 
