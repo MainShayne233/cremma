@@ -22,8 +22,13 @@ Equivlanet means that every value at every level is equal in both objects
 **Params**: <code>object</code> object2 - Second object  
 **Example**  
 ```js
-equivalent({hi: 'there'}, {hi: 'there'})
+equivalent({hi: {how: 'are you'}}, {hi: {how: 'are you'}})
 //=> true
+```
+**Example**  
+```js
+equivalent({hi: {how: 'are you'}}, {hi: {how: 'art thou?'}})
+//=> false
 ```
 <a name="merge"></a>
 
@@ -36,6 +41,6 @@ object2 will overwrite matching keys in object1
 **Params**: <code>object</code> object2 - Second Object  
 **Example**  
 ```js
-merge({woah: 'we'}, {done: 'merged'})
-//=> {woah: 'we', done: 'merged'}
+merge({woah: 'we', seeya: 'soon'}, {done: 'merged', seeya: 'later'})
+//=> {woah: 'we', done: 'merged', seeya: 'later'}
 ```
