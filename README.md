@@ -39,6 +39,10 @@ object.equivalent( sampleObject1, sampleObject2 )
 // #=> false
 ```
 
+## Available Functions
+### Object
+- equivalent(object1, object2)
+
 ## Development
 Clone and enter the repo, and install deps
 ```bash

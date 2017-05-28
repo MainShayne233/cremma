@@ -6,6 +6,9 @@ export const sampleObject1 = {
     },
     also: ['an', 'array'],
   },
+  that: {
+    is: 'all'
+  },
 }
 
 export const sampleObject2 = {
@@ -17,4 +20,8 @@ export const sampleObject2 = {
       version: 'nice!',
     },
   },
+  that: {
+    is: 'all, again',
+  },
 }
+
