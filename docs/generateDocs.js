@@ -3,6 +3,7 @@ const fs = require('fs')
 
 const modules = [
   ['src/object/index.js', 'objectDocs.md', 'object'],
+  ['src/string/index.js', 'stringDocs.md', 'string'],
 ]
 
 const modulesList =modules.map(module => {
