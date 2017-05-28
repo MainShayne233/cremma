@@ -16,7 +16,7 @@ const modulesList =modules.map(module => {
     })
   })
 
-  return `- [${name}](objectDocs.md)`
+  return `- [${name}](${outpath})`
 }).join("\n")
 
 const index = "" +

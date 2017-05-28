@@ -1,7 +1,7 @@
 <a name="isNumberString"></a>
 
 ## isNumberString() ⇒ <code>boolean</code>
-Returns true is string is a valid number, false otherwise.
+Returns true if string is a valid number, false otherwise.
 
 **Kind**: global function  
 **Params**: <code>string</code> string - String to check if number  
