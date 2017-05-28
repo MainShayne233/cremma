@@ -6,7 +6,7 @@ import doctest from '../docs/doctest'
 
 describe('object', () => {
 
-  describe('doctests', () => doctest('./src/object/index.js') )
+ // describe('doctests', () => doctest('./src/object/index.js') )
 
   describe('equivalent/2', () =>  {
 
@@ -20,6 +20,11 @@ describe('object', () => {
       const clonedArray = JSON.parse( JSON.stringify(sampleArray1) )
       expect( object.equivalent(sampleArray1, clonedArray) ).to.equal(true)
       expect( object.equivalent(sampleArray1, sampleArray2) ).to.equal(false)
+    })
+
+    it('should handle undefined', () => {
+      expect( object.equivalent(undefined, undefined) ).to.equal(true)
+      expect( object.equivalent([undefined, 1], [undefined, 1]) ).to.equal(true)
     })
   })
 
@@ -69,6 +74,37 @@ describe('object', () => {
           },
         },
       })).to.equal(true)
+    })
+  })
+
+  describe('numberKeyedOBjectToArray/1', () => {
+
+    it('should return the object as an array', () => {
+
+      const numberKeyedObject = {
+        1: 'one',
+        2: 'one',
+        3: 'oops i mean two',
+        4: 'dang! four!',
+        5: 'five',
+        6: 'back on track',
+        7: 'crap!',
+      }
+
+      const expectedArray = [
+        ,
+        'one',
+        'one',
+        'oops i mean two',
+        'dang! four!',
+        'five',
+        'back on track',
+        'crap!',
+      ]
+
+      const arrayified = object.numberKeyedObjectToArray(numberKeyedObject)
+
+      expect( object.equivalent(arrayified, expectedArray) ).to.equal(true)
     })
   })
 })

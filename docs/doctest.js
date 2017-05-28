@@ -22,8 +22,8 @@ export default function doctest(filename) {
     let value
     try {
       value = eval(callString)
-    } catch(e) {
-      throw(`failed to eval ${callString}`)
+    } catch(error) {
+      throw(`failed to eval ${callString}.\n${error}`)
     }
 
     if ( returnType === 'object' ) {
@@ -40,14 +40,13 @@ export default function doctest(filename) {
         expect( `${evalVal}` ).to.equal( expectedVal )
       })
     }
-
   }
 }
 
 function parseStringObject(stringObject) {
   const withoutBrackets = stringObject.split('{').join('').split('}').join('').trim()
   const sanitized = withoutBrackets.split("'").join('"').split(' ').map(word => {
-    if (word.indexOf(':') !== -1) return '"' + word.split(':')[0] + '":'
+    if (word.indexOf(':') !== -1) return '"' + word.split('"').join('').split(':')[0] + '":'
     else return word
   }).join(' ')
  

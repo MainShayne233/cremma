@@ -12,6 +12,8 @@
  * //=> false
  */ 
 export function equivalent(object1, object2) {
+  console.error(object1, object2)
+  if (object1 === undefined) return object2 === undefined
   if (object1 === null) return object2 === null
   const [constructor1, constructor2] = [object1, object2].map(object => object.constructor)
   if (constructor1 !== constructor2) return false
@@ -58,4 +60,18 @@ export function merge(object1, object2) {
   for ( const key of Object.keys(object1) ) newObject[key] = object1[key]
   for ( const key of Object.keys(object2) ) newObject[key] = object2[key]
   return newObject
+}
+
+/*
+ * Returns the object as an array
+ * @params {object} object - Object with numbers as keys
+ * returns {array}
+ * @example
+ * numberKeyedObjectToArray({1: 'one', 2: 'two'})
+ * //=> [ undefined, 'one', 'two' ]
+ */
+export function numberKeyedObjectToArray(object) {
+  let array = []
+  for (const key of Object.keys(object)) array[key] = object[key]
+  return array
 }
