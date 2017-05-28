@@ -62,7 +62,7 @@ export function merge(object1, object2) {
   return newObject
 }
 
-/*
+/**
  * Returns the object as an array
  * @params {object} object - Object with numbers as keys
  * returns {array}
