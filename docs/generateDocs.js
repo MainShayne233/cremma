@@ -20,8 +20,8 @@ const modulesList =modules.map(module => {
 }).join("\n")
 
 const index = "" +
-  "# Docs" + "\n" +
-  modulesList + "\n"
+  "# Docs"       + "\n" +
+  modulesList    + "\n"
 
 fs.writeFile('docs/index.md', index, () => {
   console.log('wrote docs/index.md')
