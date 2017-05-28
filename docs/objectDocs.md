@@ -43,7 +43,7 @@ Returns an object of the elements grouped by the function
 **Params**: <code>function</code> fun - the function who's return value will be the key in the return object  
 **Example**  
 ```js
-groupBy([1, 1, 2, 3, 5, 8, 11], function(val) { return val % 2 ? 'odd' : 'even' } )
+groupBy([1, 1, 2, 3, 5, 8, 11], (val) => val % 2 ? 'odd' : 'even' )
 //=> {odd: [1, 1, 3, 5, 11], even: [2, 8]}
 ```
 <a name="merge"></a>
