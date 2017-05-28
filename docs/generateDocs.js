@@ -16,7 +16,7 @@ const modulesList =modules.map(module => {
     })
   })
 
-  return `- [${name}](${outpath})`
+  return `- ## [${name}](${outpath})`
 }).join("\n")
 
 const index = "" +

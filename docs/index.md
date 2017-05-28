@@ -1,3 +1,3 @@
 # Docs
-- [object](objectDocs.md)
-- [string](stringDocs.md)
+- ## [object](objectDocs.md)
+- ## [string](stringDocs.md)
