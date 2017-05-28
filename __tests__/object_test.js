@@ -6,9 +6,9 @@ import doctest from '../docs/doctest'
 
 describe('object', () => {
 
-  describe('equivalent/2', () =>  {
+  doctest('./src/object/index.js')
 
-    doctest('./src/object/index.js')
+  describe('equivalent/2', () =>  {
 
     it('should return true if two objects are equivalent', () => {
       const clonedObject = JSON.parse( JSON.stringify(sampleObject1) )
