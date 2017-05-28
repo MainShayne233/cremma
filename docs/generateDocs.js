@@ -2,11 +2,11 @@ const jsdoc2md = require('jsdoc-to-markdown')
 const fs = require('fs')
 
 const modules = [
-  ['src/object/index.js', 'objectDocs.md'],
+  ['src/object/index.js', 'objectDocs.md', 'object'],
 ]
 
-for (const module of modules) {
-  const [file, outpath] = module
+const modulesList =modules.map(module => {
+  const [file, outpath, name] = module
   jsdoc2md.render({
     files: file,
   }).then(output => {
@@ -14,5 +14,14 @@ for (const module of modules) {
       console.log(`wrote ${'docs/' + outpath}`)
     })
   })
-}
 
+  return `- [${name}](objectDocs.md)`
+}).join("\n")
+
+const index = "" +
+  "# Docs" + "\n" +
+  modulesList + "\n"
+
+fs.writeFile('docs/index.md', index, () => {
+  console.log('wrote docs/index.md')
+})
