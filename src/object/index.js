@@ -5,12 +5,14 @@
  * @params {object} object2 - Second object
  * @returns {object}
  * @example
- * equivalent({hi: 'there'}, {hi: 'there'})
+ * equivalent({hi: {how: 'are you'}}, {hi: {how: 'are you'}})
  * //=> true
+ * @example
+ * equivalent({hi: {how: 'are you'}}, {hi: {how: 'art thou?'}})
+ * //=> false
  */ 
 export function equivalent(object1, object2) {
-  if (object1 === null && object2 === null) return true
-  if (object1 === null || object2 === null) return false
+  if (object1 === null) return object2 === null
   const [constructor1, constructor2] = [object1, object2].map(object => object.constructor)
   if (constructor1 !== constructor2) return false
   if (constructor1 === Object || constructor1 === Array) {
@@ -30,9 +32,9 @@ export function equivalent(object1, object2) {
  * @params {object} object2 - Second Object
  * @returns {object}
  * @example
- * merge({woah: 'we'}, {done: 'merged'})
- * //=> {woah: 'we', done: 'merged'}
-*/
+ * merge({woah: 'we', seeya: 'soon'}, {done: 'merged', seeya: 'later'})
+ * //=> {woah: 'we', done: 'merged', seeya: 'later'}
+ */
 export function merge(object1, object2) {
   let newObject = {}
   for ( const key of Object.keys(object1) ) newObject[key] = object1[key]
