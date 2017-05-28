@@ -31,7 +31,7 @@ export function equivalent(object1, object2) {
  * @params {function} fun - the function who's return value will be the key in the return object
  * @returns {object}
  * @example
- * groupBy([1, 1, 2, 3, 5, 8, 11], function(val) { return val % 2 ? 'odd' : 'even' } )
+ * groupBy([1, 1, 2, 3, 5, 8, 11], (val) => val % 2 ? 'odd' : 'even' )
  * //=> {odd: [1, 1, 3, 5, 11], even: [2, 8]}
  */
 export function groupBy(elements, fun) {
