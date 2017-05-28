@@ -6,7 +6,6 @@ import doctest from '../docs/doctest'
 
 describe('object', () => {
 
-
   describe('equivalent/2', () =>  {
 
     doctest('./src/object/index.js')
