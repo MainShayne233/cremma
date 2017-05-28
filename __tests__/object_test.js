@@ -23,6 +23,28 @@ describe('object', () => {
     })
   })
 
+  describe('groupBy/2', () => {
+    
+    it('should return an object that groups the elements via the function', () => {
+      const people = [
+        {name: 'john', age: 56},
+        {name: 'joey', age: 54},
+        {name: 'jimmy', age: 56},
+        {name: 'josh', age: 49},
+      ]
+
+      const expectedGroupedPeople = {
+        49: [ {name: 'josh', age: 49} ],
+        54: [ {name: 'joey', age: 54} ],
+        56: [ {name: 'john', age: 56}, {name: 'jimmy', age: 56} ],
+      }
+
+      const grouped = object.groupBy(people, (person) => person.age)
+
+      expect( object.equivalent(grouped, expectedGroupedPeople) ).to.equal(true)
+    })
+  })
+
   describe('merge/2', () => {
 
     it('should merge two objects together', () => {

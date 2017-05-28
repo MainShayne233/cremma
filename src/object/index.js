@@ -26,6 +26,24 @@ export function equivalent(object1, object2) {
 }
 
 /**
+ * Returns an object of the elements grouped by the function
+ * @params {array} elements - the elements to be grouped
+ * @params {function} fun - the function who's return value will be the key in the return object
+ * @returns {object}
+ * @example
+ * groupBy([1, 1, 2, 3, 5, 8, 11], function(val) { return val % 2 ? 'odd' : 'even' } )
+ * //=> {odd: [1, 1, 3, 5, 11], even: [2, 8]}
+ */
+export function groupBy(elements, fun) {
+  let grouping = {}
+  for (const element of elements) {
+    const value = fun(element)
+    grouping[value] = (grouping[value] || []).concat([element])
+  }
+  return grouping
+}
+
+/**
  * Merges two objects into one new object
  * object2 will overwrite matching keys in object1
  * @params {object} object1 - First Object

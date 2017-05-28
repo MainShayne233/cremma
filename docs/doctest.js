@@ -19,7 +19,12 @@ export default function doctest(filename) {
     const callString = `module['${functionName}']${args}`
     const returnValue = findReturnValue(fileLines, exampleIndex)
     const returnType = findReturnType(fileLines, exampleIndex)
-    const value = eval(callString)
+    let value
+    try {
+      value = eval(callString)
+    } catch(e) {
+      throw(`failed to eval ${callString}`)
+    }
 
     if ( returnType === 'object' ) {
       const evalVal = parseStringObject( util.inspect(value)  )
@@ -45,8 +50,12 @@ function parseStringObject(stringObject) {
     if (word.indexOf(':') !== -1) return '"' + word.split(':')[0] + '":'
     else return word
   }).join(' ')
-  
-  return JSON.parse(`{ ${sanitized} }`)
+ 
+  try {
+    return JSON.parse(`{ ${sanitized} }`)
+  } catch(error) {
+    throw(`Failed to parse { ${sanitized} }`)
+  }
 }
 
 function findReturnType(fileLines, startingIndex) {
@@ -62,7 +71,9 @@ function findReturnType(fileLines, startingIndex) {
 function findExampleCall(fileLines, startingIndex) {
   const line = fileLines[startingIndex + 1]
   const callLine = line.slice(3, line.length)
-  const [functionName, args] = callLine.split('(')
+  const split = callLine.split('(')
+  const functionName = split[0]
+  const args = split.slice(1, split.length).join('(')
   return [
     functionName,
     '(' + args,
