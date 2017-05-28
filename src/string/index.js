@@ -1,5 +1,5 @@
 /**
- * Returns true is string is a valid number, false otherwise.
+ * Returns true if string is a valid number, false otherwise.
  * @params {string} string - String to check if number
  * @returns {boolean}
  * @example
