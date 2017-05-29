@@ -109,6 +109,7 @@ describe('object', () => {
         },
         catchPhrase: 'ayyyyy!',
         friends: ['travis'],
+        special: NaN,
       }
       const object2 = {
         firstName: 'travis',
@@ -122,6 +123,7 @@ describe('object', () => {
           model: 'rav4',
         },
         friends: ['john'],
+        special: NaN,
       }
       const diff = object.diff(object1, object2)
       const expectedDiff = [
