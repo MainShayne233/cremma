@@ -18,7 +18,7 @@ Equivlanet means that every value at every level is equal in both objects</p>
 <dd><p>Merges two objects into one new object
 object2 will overwrite matching keys in object1</p>
 </dd>
-<dt><a href="#numberKeyedObjectToArray">numberKeyedObjectToArray()</a></dt>
+<dt><a href="#numberKeyedObjectToArray">numberKeyedObjectToArray()</a> ⇒ <code>array</code></dt>
 <dd><p>Returns the object as an array</p>
 </dd>
 </dl>
@@ -106,12 +106,11 @@ merge({woah: 'we', seeya: 'soon'}, {done: 'merged', seeya: 'later'})
 ```
 <a name="numberKeyedObjectToArray"></a>
 
-## numberKeyedObjectToArray()
+## numberKeyedObjectToArray() ⇒ <code>array</code>
 Returns the object as an array
 
 **Kind**: global function  
-**Params**: <code>object</code> object - Object with numbers as keys
-returns {array}  
+**Params**: <code>object</code> object - Object with numbers as keys  
 **Example**  
 ```js
 numberKeyedObjectToArray({1: 'one', 2: 'two'})

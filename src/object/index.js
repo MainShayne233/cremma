@@ -145,7 +145,7 @@ export function merge(object1, object2) {
 /**
  * Returns the object as an array
  * @params {object} object - Object with numbers as keys
- * returns {array}
+ * @returns {array}
  * @example
  * numberKeyedObjectToArray({1: 'one', 2: 'two'})
  * //=> [ undefined, 'one', 'two' ]
