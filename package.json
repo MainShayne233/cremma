@@ -8,7 +8,8 @@
     "docs": "node docs/generateDocs.js",
     "start": "./node_modules/.bin/webpack-dev-server --watch-stdin --colors",
     "test": "./node_modules/.bin/jest --verbose",
-    "test:watch": "./node_modules/.bin/jest --watch"
+    "test:watch": "./node_modules/.bin/jest --watch",
+    "push": "npm run docs && npm run build && git push"
   },
   "engines": {
     "node": ">=4.5.0",
