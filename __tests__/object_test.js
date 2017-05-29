@@ -7,6 +7,15 @@ import doctest from '../docs/doctest'
 describe('object', () => {
 
  // describe('doctests', () => doctest('./src/object/index.js') )
+  
+  describe('dig/2', () => {
+
+    it('should return the value stored in the object, using the array/string of keys to get to it', () => {
+
+      expect( object.dig(sampleObject1, ['i', 'have', 'some']) ).to.equal('data')
+      expect( object.dig(sampleObject1, ['i', 'also', '1']) ).to.equal('array')
+    })
+  })
 
   describe('equivalent/2', () =>  {
 

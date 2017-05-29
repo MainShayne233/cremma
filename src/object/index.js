@@ -1,4 +1,22 @@
 /**
+ * Returns the value stored in the object where the nested keys point to
+ * @params {object} object - Object with value to dig out
+ * @params {array} - nestedKeys - Can be array or '.' delimited string
+ * @example
+ * dig({a: {b: {c: 'd'}}}, ['a', 'b', 'c'])
+ * //=> 'd'
+ * @example
+ * dig({a: {b: {c: 'd'}}}, 'a.b.c')
+ * //=> 'd'
+ */
+export function dig(object, nestedKeys) {
+  const keys = (nestedKeys.constructor === Array) ? nestedKeys : nestedKeys.split('.')
+  var value = object
+  for (const key of keys) value = value[key]
+  return value
+}
+
+/**
  * Returns true if objects are equivalent, false otherwise
  * Equivlanet means that every value at every level is equal in both objects
  * @params {object} object1 - First object
@@ -12,7 +30,6 @@
  * //=> false
  */ 
 export function equivalent(object1, object2) {
-  console.error(object1, object2)
   if (object1 === undefined) return object2 === undefined
   if (object1 === null) return object2 === null
   const [constructor1, constructor2] = [object1, object2].map(object => object.constructor)

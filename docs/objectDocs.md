@@ -1,6 +1,9 @@
 ## Functions
 
 <dl>
+<dt><a href="#dig">dig()</a></dt>
+<dd><p>Returns the value stored in the object where the nested keys point to</p>
+</dd>
 <dt><a href="#equivalent">equivalent()</a> ⇒ <code>boolean</code></dt>
 <dd><p>Returns true if objects are equivalent, false otherwise
 Equivlanet means that every value at every level is equal in both objects</p>
@@ -17,6 +20,24 @@ object2 will overwrite matching keys in object1</p>
 </dd>
 </dl>
 
+<a name="dig"></a>
+
+## dig()
+Returns the value stored in the object where the nested keys point to
+
+**Kind**: global function  
+**Params**: <code>object</code> object - Object with value to dig out  
+**Params**: <code>array</code> - nestedKeys - Can be array or '.' delimited string  
+**Example**  
+```js
+dig({a: {b: {c: 'd'}}}, ['a', 'b', 'c'])
+//=> 'd'
+```
+**Example**  
+```js
+dig({a: {b: {c: 'd'}}}, 'a.b.c')
+//=> 'd'
+```
 <a name="equivalent"></a>
 
 ## equivalent() ⇒ <code>boolean</code>
