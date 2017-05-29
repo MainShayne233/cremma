@@ -1,6 +1,9 @@
 ## Functions
 
 <dl>
+<dt><a href="#diff">diff(object1, object2)</a> ⇒ <code>array.&lt;object&gt;</code></dt>
+<dd><p>Returns an array of objects, where each object describes a difference between the two objects</p>
+</dd>
 <dt><a href="#dig">dig()</a></dt>
 <dd><p>Returns the value stored in the object where the nested keys point to</p>
 </dd>
@@ -20,6 +23,23 @@ object2 will overwrite matching keys in object1</p>
 </dd>
 </dl>
 
+<a name="diff"></a>
+
+## diff(object1, object2) ⇒ <code>array.&lt;object&gt;</code>
+Returns an array of objects, where each object describes a difference between the two objects
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| object1 | <code>object</code> | First object to diff |
+| object2 | <code>object</code> | Second object to diff |
+
+**Example**  
+```js
+diff({name: 'john'}, {name: 'simon'})
+//=> [ [key: 'name', firstValue: 'john', secondValue: 'simon'] ]
+```
 <a name="dig"></a>
 
 ## dig()

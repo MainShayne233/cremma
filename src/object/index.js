@@ -7,39 +7,54 @@
  * diff({name: 'john'}, {name: 'simon'})
  * //=> [ [key: 'name', firstValue: 'john', secondValue: 'simon'] ]
  */
-export function diff(diffObject1, diffObject2) {
-  let diffs = []
-  const pairs = [ 
-    [diffObject1, diffObject2], 
-    [diffObject2, diffObject1],
-  ]
+export function diff(object1, object2, parentKeys = []) {
+  let firstDiffs = oneDiff(object1, object2)
+  let secondDiffs = oneDiff(object2, object1).map(diff => {
+    return merge(diff, {
+      firstValue: diff.secondValue,
+      secondValue: diff.firstValue,
+    })
+  })
 
-  for (const pair of pairs) {
-    const [ object1, object2 ] = pair
-    const keys = Object.keys(object1)
-    for (const key of keys) {
-      const [value1, value2] = pair.map(object => object[key])
-      if (value1 === null && value2 !== null)
-        diffs.push( {key: key, firstValue: value1, secondValue: value2} )
-      else if (value1.constructor === Array || value1.constructor === Object) {
-        if (value1.constructor !== value2.constructor) {
-          diffs.push( {key: key, firstValue: value1, secondValue: value2} )
-          diffs = diffs.concat( [diff(value1, {})] )
-        } else {
-          const subDiff = diff(value1, value2)
-          if (subDiff.length > 0) { 
-            diffs.push( {key: key, firstValue: value1, secondValue: value2} )
-            diffs = diffs.concat( subDiff )
-          }
+  for (const secondDiff of secondDiffs)
+    if ( firstDiffs.find(firstDiff => firstDiff.key === secondDiff.key) === undefined )
+      firstDiffs.push(secondDiff)
+  return firstDiffs
+}
+
+export function oneDiff(object1, object2, parentKeys = []) {
+  let diffs = []
+
+  const keys = Object.keys(object1)
+  for (const key of keys) {
+    const nestedKey = parentKeys.concat([key]).join('.')
+    const [value1, value2] = [object1, object2].map(object => object[key])
+    if ( diffs.find(diff => diff.key === nestedKey) ) continue
+    else if (value1 === undefined) {
+      if (value2 !== undefined) diffs.push( {key: nestedKey, firstValue: value1, secondValue: value2} )
+    }
+    else if (value1 === null) {
+      if (value2 !== null) diffs.push( {key: nestedKey, firstValue: value1, secondValue: value2} )
+    }
+    else if (value1.constructor === Array || value1.constructor === Object) {
+      if (!value2 || (value1.constructor !== value2.constructor)) {
+        diffs.push( {key: nestedKey, firstValue: value1, secondValue: value2} )
+
+        diffs = diffs.concat( oneDiff(value1, {}, parentKeys.concat([key])) )
+      } else {
+        const subDiff = oneDiff(value1, value2, parentKeys.concat([key]))
+        if (subDiff.length > 0) { 
+          diffs.push( {key: nestedKey, firstValue: value1, secondValue: value2} )
+          diffs = diffs.concat(subDiff)
         }
-      } else if (value1 !== value2) {
-        keys.push( {key: key, firstValue: value1, secondValue: value2} )
       }
+    } else if (value1 !== value2) {
+      diffs.push( {key: nestedKey, firstValue: value1, secondValue: value2} )
     }
   }
-
   return diffs
 }
+
 
 /**
  * Returns the value stored in the object where the nested keys point to

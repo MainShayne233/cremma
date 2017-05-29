@@ -113,15 +113,17 @@ describe('object', () => {
         },
         friends: ['john'],
       }
-      const diff = object.diff(sampleObject1, sampleObject2)
+      const diff = object.diff(object1, object2)
       const expectedDiff = [
         { key: 'firstName', firstValue: 'john', secondValue: 'travis' },
+        { key: 'address', firstValue: {zip: '32952', country: 'US'}, secondValue: {zip: '90832', country: 'US'} },
         { key: 'address.zip', firstValue: '32952', secondValue: '90832' },
         { key: 'catchPhrase', firstValue: 'ayyyyy!', secondValue: undefined },
+        { key: 'friends', firstValue: ['travis'], secondValue: ['john'] },
+        { key: 'friends.0', firstValue: 'travis', secondValue: 'john' },
         { key: 'car', firstValue: undefined, secondValue: {make: 'toyota', model: 'rav4'} },
         { key: 'car.make', firstValue: undefined, secondValue: 'toyota' },
         { key: 'car.model', firstValue: undefined, secondValue: 'rav4' },
-        { key: 'friends.0', firstValue: 'travis', secondValue: 'john' },
       ]
 
       expect( object.equivalent( diff, expectedDiff ) ).to.equal(true)
