@@ -1,3 +1,5 @@
+const nan = require('../nan')
+
 /**
  * Returns an array of objects, where each object describes a difference between the two objects
  * @param {object} object1 - First object to diff
@@ -89,6 +91,7 @@ export function dig(object, nestedKeys) {
  */ 
 export function equivalent(object1, object2) {
   if (object1 === undefined) return object2 === undefined
+  if (nan.isNaN(object1)) return nan.isNaN(object2)
   if (object1 === null) return object2 === null
   const [constructor1, constructor2] = [object1, object2].map(object => object.constructor)
   if (constructor1 !== constructor2) return false

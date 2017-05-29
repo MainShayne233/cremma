@@ -22,20 +22,26 @@ describe('object', () => {
 
     it('should return true if two objects are equivalent', () => {
       const clonedObject = JSON.parse( JSON.stringify(sampleObject1) )
-      expectEquivalent( sampleObject1, clonedObject )
-      expectInequivalent( sampleObject1, sampleArray2 )
+      expect( object.equivalent(sampleObject1, clonedObject) ).to.equal(true)
+      expect( object.equivalent(sampleObject1, sampleObject2) ).to.equal(false)
     })
 
     it('should also work for arrays', () => {
       const clonedArray = JSON.parse( JSON.stringify(sampleArray1) )
-      expectEquivalent(sampleArray1, clonedArray)
-      expectInequivalent(sampleArray1, sampleArray2)
+      expect( object.equivalent(sampleArray1, clonedArray) ).to.equal(true)
+      expect( object.equivalent(sampleArray1, sampleArray2) ).to.equal(false)
     })
 
     it('should handle undefined', () => {
-      expectEquivalent([undefined], [undefined])
-      expectEquivalent([undefined, 1], [undefined, 1])
-      expectInequivalent([undefined, 1], [undefined, 2])
+      expect( object.equivalent([undefined], [undefined]) ).to.equal(true)
+      expect( object.equivalent([undefined, 1], [undefined, 1]) ).to.equal(true)
+      expect( object.equivalent([undefined, 1], [undefined, 2]) ).to.equal(false)
+    })
+
+    it('should handle NaN', () => {
+      expect( object.equivalent([NaN], [NaN]) ).to.equal(true)
+      expect( object.equivalent([NaN, 1], [NaN, 1]) ).to.equal(true)
+      expect( object.equivalent([NaN, 1], [NaN, 2]) ).to.equal(false)
     })
   })
 
