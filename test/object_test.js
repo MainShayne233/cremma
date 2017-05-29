@@ -1,8 +1,8 @@
 import { expect } from 'chai'
 import { object } from '../src'
-import { sampleObject1, sampleObject2 } from './__support__/helpers/fixtures/objects'
-import { sampleArray1, sampleArray2 } from './__support__/helpers/fixtures/arrays'
-import doctest from '../docs/doctest'
+import { sampleObject1, sampleObject2 } from './support/fixtures/objects'
+import { sampleArray1, sampleArray2 } from './support/fixtures/arrays'
+//import doctest from '../docs/doctest'
 
 describe('object', () => {
 

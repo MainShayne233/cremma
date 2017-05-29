@@ -1,6 +1,6 @@
 import { expect } from 'chai'
-import doctest from '../docs/doctest'
 import { string } from '../src'
+//import doctest from '../docs/doctest'
 
 describe('string', () => {
 
