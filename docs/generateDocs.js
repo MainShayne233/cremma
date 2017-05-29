@@ -5,6 +5,7 @@ const modules = [
   ['src/object/index.js', 'objectDocs.md', 'object'],
   ['src/array/index.js', 'arrayDocs.md', 'array'],
   ['src/string/index.js', 'stringDocs.md', 'string'],
+  ['src/nan/index.js', 'nanDocs.md', 'nan'],
 ]
 
 const modulesList =modules.map(module => {
