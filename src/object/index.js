@@ -5,7 +5,7 @@
  * @returns {array<object>}
  * @example
  * diff({name: 'john'}, {name: 'simon'})
- * //=> [ [key: 'name', firstValue: 'john', secondValue: 'simon'] ]
+ * //=> [ {key: 'name', firstValue: 'john', secondValue: 'simon'} ]
  */
 export function diff(object1, object2, parentKeys = []) {
   let firstDiffs = oneDiff(object1, object2)
@@ -22,7 +22,7 @@ export function diff(object1, object2, parentKeys = []) {
   return firstDiffs
 }
 
-export function oneDiff(object1, object2, parentKeys = []) {
+function oneDiff(object1, object2, parentKeys = []) {
   let diffs = []
 
   const keys = Object.keys(object1)

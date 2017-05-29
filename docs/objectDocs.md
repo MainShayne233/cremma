@@ -38,7 +38,7 @@ Returns an array of objects, where each object describes a difference between th
 **Example**  
 ```js
 diff({name: 'john'}, {name: 'simon'})
-//=> [ [key: 'name', firstValue: 'john', secondValue: 'simon'] ]
+//=> [ {key: 'name', firstValue: 'john', secondValue: 'simon'} ]
 ```
 <a name="dig"></a>
 
