@@ -2,6 +2,7 @@
 
 Utility functions for Javascript with a preference for immutability
 
+[![npm version](https://badge.fury.io/js/cremma.svg)](https://badge.fury.io/js/cremma)
 [![Build Status](https://travis-ci.org/MainShayne233/cremma.svg?branch=master)](https://travis-ci.org/MainShayne233/cremma)
 
 Check the [docs](docs/index.md) for available functions
