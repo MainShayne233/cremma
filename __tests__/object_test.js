@@ -86,7 +86,7 @@ describe('object', () => {
     })
   })
 
-  describe('numberKeyedOBjectToArray/1', () => {
+  describe('numberKeyedObjectToArray/1', () => {
 
     it('should return the object as an array', () => {
 

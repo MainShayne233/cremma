@@ -6,7 +6,7 @@ describe('string', () => {
 
 //  describe('doctests', () => doctest('./src/string/index.js') )
 
-  describe('isNumberString', () => {
+  describe('isNumberString/1', () => {
     it('should return true if string is number, false otherwise', () => {
       expect( string.isNumberString('4234234') ).to.equal(true)
       expect( string.isNumberString('NaN') ).to.equal(true)
@@ -15,7 +15,7 @@ describe('string', () => {
     })
   })
 
-  describe('titleize', () => {
+  describe('titleize/1', () => {
 
     it('should upcase each word and make it space delimited', () => {
       expect( string.titleize('super_duper_snake_case') ).to.equal('Super Duper Snake Case')
@@ -25,7 +25,7 @@ describe('string', () => {
     })
   })
 
-  describe('titleizeWord', () => {
+  describe('titleizeWord/1', () => {
 
     it('upcases the first letter of the word, lowercases the rest', () => {
       expect( string.titleizeWord('super') ).to.equal('Super')
