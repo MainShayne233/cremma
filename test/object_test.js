@@ -2,6 +2,7 @@ import { expect } from 'chai'
 import { object } from '../src'
 import { sampleObject1, sampleObject2 } from './support/fixtures/objects'
 import { sampleArray1, sampleArray2 } from './support/fixtures/arrays'
+import { expectEquivalent, expectInequivalent } from './support/helpers'
 //import doctest from '../docs/doctest'
 
 describe('object', () => {
@@ -21,19 +22,20 @@ describe('object', () => {
 
     it('should return true if two objects are equivalent', () => {
       const clonedObject = JSON.parse( JSON.stringify(sampleObject1) )
-      expect( object.equivalent(sampleObject1, clonedObject) ).to.equal(true)
-      expect( object.equivalent(sampleObject1, sampleObject2) ).to.equal(false)
+      expectEquivalent( sampleObject1, clonedObject )
+      expectInequivalent( sampleObject1, sampleArray2 )
     })
 
     it('should also work for arrays', () => {
       const clonedArray = JSON.parse( JSON.stringify(sampleArray1) )
-      expect( object.equivalent(sampleArray1, clonedArray) ).to.equal(true)
-      expect( object.equivalent(sampleArray1, sampleArray2) ).to.equal(false)
+      expectEquivalent(sampleArray1, clonedArray)
+      expectInequivalent(sampleArray1, sampleArray2)
     })
 
     it('should handle undefined', () => {
-      expect( object.equivalent(undefined, undefined) ).to.equal(true)
-      expect( object.equivalent([undefined, 1], [undefined, 1]) ).to.equal(true)
+      expectEquivalent([undefined], [undefined])
+      expectEquivalent([undefined, 1], [undefined, 1])
+      expectInequivalent([undefined, 1], [undefined, 2])
     })
   })
 
@@ -55,7 +57,7 @@ describe('object', () => {
 
       const grouped = object.groupBy(people, (person) => person.age)
 
-      expect( object.equivalent(grouped, expectedGroupedPeople) ).to.equal(true)
+      expectEquivalent(grouped, expectedGroupedPeople)
     })
   })
 
@@ -64,7 +66,7 @@ describe('object', () => {
     it('should merge two objects together', () => {
 
       const mergedObject = object.merge(sampleObject1, sampleObject2)
-      expect( object.equivalent(mergedObject, {
+      const expectedMergedObject = {
         hi: 'there',
         i: {
           have: {
@@ -83,7 +85,9 @@ describe('object', () => {
             version: 'nice!',
           },
         },
-      })).to.equal(true)
+      }
+
+      expectEquivalent(mergedObject, expectedMergedObject)
     })
   })
 
@@ -126,7 +130,7 @@ describe('object', () => {
         { key: 'car.model', firstValue: undefined, secondValue: 'rav4' },
       ]
 
-      expect( object.equivalent( diff, expectedDiff ) ).to.equal(true)
+      expectEquivalent(diff, expectedDiff)
     })
   })
 
@@ -156,8 +160,7 @@ describe('object', () => {
       ]
 
       const arrayified = object.numberKeyedObjectToArray(numberKeyedObject)
-
-      expect( object.equivalent(arrayified, expectedArray) ).to.equal(true)
+      expectEquivalent(arrayified, expectedArray)
     })
   })
 })
