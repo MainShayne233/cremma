@@ -62,6 +62,7 @@ describe('object', () => {
   describe('merge/2', () => {
 
     it('should merge two objects together', () => {
+
       const mergedObject = object.merge(sampleObject1, sampleObject2)
       expect( object.equivalent(mergedObject, {
         hi: 'there',
@@ -83,6 +84,47 @@ describe('object', () => {
           },
         },
       })).to.equal(true)
+    })
+  })
+
+  describe('diff/2', () => {
+
+    it('should return an array of objects that describe the differences between two objects', () => {
+      const object1 = {
+        firstName: 'john',
+        lastName: 'smith',
+        address: {
+          zip: '32952',
+          country: 'US',
+        },
+        catchPhrase: 'ayyyyy!',
+        friends: ['travis'],
+      }
+      const object2 = {
+        firstName: 'travis',
+        lastName: 'smith',
+        address: {
+          zip: '90832',
+          country: 'US',
+        },
+        car: {
+          make: 'toyota',
+          model: 'rav4',
+        },
+        friends: ['john'],
+      }
+      const diff = object.diff(sampleObject1, sampleObject2)
+      const expectedDiff = [
+        { key: 'firstName', firstValue: 'john', secondValue: 'travis' },
+        { key: 'address.zip', firstValue: '32952', secondValue: '90832' },
+        { key: 'catchPhrase', firstValue: 'ayyyyy!', secondValue: undefined },
+        { key: 'car', firstValue: undefined, secondValue: {make: 'toyota', model: 'rav4'} },
+        { key: 'car.make', firstValue: undefined, secondValue: 'toyota' },
+        { key: 'car.model', firstValue: undefined, secondValue: 'rav4' },
+        { key: 'friends.0', firstValue: 'travis', secondValue: 'john' },
+      ]
+
+      expect( object.equivalent( diff, expectedDiff ) ).to.equal(true)
     })
   })
 

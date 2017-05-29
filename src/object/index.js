@@ -1,4 +1,47 @@
 /**
+ * Returns an array of objects, where each object describes a difference between the two objects
+ * @param {object} object1 - First object to diff
+ * @param {object} object2 - Second object to diff
+ * @returns {array<object>}
+ * @example
+ * diff({name: 'john'}, {name: 'simon'})
+ * //=> [ [key: 'name', firstValue: 'john', secondValue: 'simon'] ]
+ */
+export function diff(diffObject1, diffObject2) {
+  let diffs = []
+  const pairs = [ 
+    [diffObject1, diffObject2], 
+    [diffObject2, diffObject1],
+  ]
+
+  for (const pair of pairs) {
+    const [ object1, object2 ] = pair
+    const keys = Object.keys(object1)
+    for (const key of keys) {
+      const [value1, value2] = pair.map(object => object[key])
+      if (value1 === null && value2 !== null)
+        diffs.push( {key: key, firstValue: value1, secondValue: value2} )
+      else if (value1.constructor === Array || value1.constructor === Object) {
+        if (value1.constructor !== value2.constructor) {
+          diffs.push( {key: key, firstValue: value1, secondValue: value2} )
+          diffs = diffs.concat( [diff(value1, {})] )
+        } else {
+          const subDiff = diff(value1, value2)
+          if (subDiff.length > 0) { 
+            diffs.push( {key: key, firstValue: value1, secondValue: value2} )
+            diffs = diffs.concat( subDiff )
+          }
+        }
+      } else if (value1 !== value2) {
+        keys.push( {key: key, firstValue: value1, secondValue: value2} )
+      }
+    }
+  }
+
+  return diffs
+}
+
+/**
  * Returns the value stored in the object where the nested keys point to
  * @params {object} object - Object with value to dig out
  * @params {array} - nestedKeys - Can be array or '.' delimited string
