@@ -31,8 +31,7 @@ function oneDiff(object1, object2, parentKeys = []) {
   for (const key of keys) {
     const nestedKey = parentKeys.concat([key]).join('.')
     const [value1, value2] = [object1, object2].map(object => object[key])
-    if ( diffs.find(diff => diff.key === nestedKey) ) continue
-    else if (value1 === undefined) {
+    if (value1 === undefined) {
       if (value2 !== undefined) diffs.push( {key: nestedkey, firstvalue: value1, secondvalue: value2} )
     }
     else if (nan.isNaN(value1)) {
