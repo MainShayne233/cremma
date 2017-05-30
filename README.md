@@ -17,29 +17,27 @@ Import modules wherever you want to use them
 ```javascript
 import { object } from 'cremma'
 
-const sampleObject1 = {
+const sampleObject = {
   hi: 'there',
   i: {
     have: {
       some: 'data',
     },
-    also: ['an', 'array'],
+    also: ['a', 'array'],
   },
 }
 
-const sampleObject2 = {
-  woah: 5,
-  a: 'number',
-  now: {
-    a: {
-      string: '5',
-      version: 'nice!',
-    },
-  },
-}
-
-object.equivalent( sampleObject1, sampleObject2 )
-// #=> false
+const newObject = object.digAndPut(sampleObject, ['i', 'also', '1'], 'an')
+// #=>
+// {
+//   hi: 'there',
+//   i: {
+//     have: {
+//       some: 'data',
+//     },
+//     also: ['an', 'array'],
+//   },
+// }
 ```
 
 ## Development

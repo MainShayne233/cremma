@@ -8,6 +8,53 @@ import { expectEquivalent, expectInequivalent } from './support/helpers'
 describe('object', () => {
 
  // describe('doctests', () => doctest('./src/object/index.js') )
+ 
+  describe('diff/2', () => {
+
+    it('should return an array of objects that describe the differences between two objects', () => {
+      const object1 = {
+        firstName: 'john',
+        lastName: 'smith',
+        address: {
+          zip: '32952',
+          country: 'US',
+        },
+        catchPhrase: 'ayyyyy!',
+        friends: ['travis'],
+        special: NaN,
+      }
+      const object2 = {
+        firstName: 'travis',
+        lastName: 'smith',
+        address: {
+          zip: '90832',
+          country: 'US',
+        },
+        car: {
+          make: 'toyota',
+          model: 'rav4',
+        },
+        friends: ['john'],
+        special: NaN,
+      }
+      const diff = object.diff(object1, object2)
+      const expectedDiff = [
+        { key: 'firstName', firstValue: 'john', secondValue: 'travis' },
+        { key: 'address', firstValue: {zip: '32952', country: 'US'}, secondValue: {zip: '90832', country: 'US'} },
+        { key: 'address.zip', firstValue: '32952', secondValue: '90832' },
+        { key: 'catchPhrase', firstValue: 'ayyyyy!', secondValue: undefined },
+        { key: 'friends', firstValue: ['travis'], secondValue: ['john'] },
+        { key: 'friends.0', firstValue: 'travis', secondValue: 'john' },
+        { key: 'car', firstValue: undefined, secondValue: {make: 'toyota', model: 'rav4'} },
+        { key: 'car.make', firstValue: undefined, secondValue: 'toyota' },
+        { key: 'car.model', firstValue: undefined, secondValue: 'rav4' },
+      ]
+
+      expectEquivalent(diff, expectedDiff)
+    })
+  })
+
+
   
   describe('dig/2', () => {
 
@@ -97,48 +144,27 @@ describe('object', () => {
     })
   })
 
-  describe('diff/2', () => {
-
-    it('should return an array of objects that describe the differences between two objects', () => {
-      const object1 = {
-        firstName: 'john',
-        lastName: 'smith',
-        address: {
-          zip: '32952',
-          country: 'US',
-        },
-        catchPhrase: 'ayyyyy!',
-        friends: ['travis'],
-        special: NaN,
+  describe('digAndPut/3', () => {
+    it('should put the value in the object where the keys point to', () => {
+      const sampleObject = {
+        woah: {
+          this: {
+            is: ['getting', { pretty: 'deep' } ]
+          }
+        }
       }
-      const object2 = {
-        firstName: 'travis',
-        lastName: 'smith',
-        address: {
-          zip: '90832',
-          country: 'US',
-        },
-        car: {
-          make: 'toyota',
-          model: 'rav4',
-        },
-        friends: ['john'],
-        special: NaN,
-      }
-      const diff = object.diff(object1, object2)
-      const expectedDiff = [
-        { key: 'firstName', firstValue: 'john', secondValue: 'travis' },
-        { key: 'address', firstValue: {zip: '32952', country: 'US'}, secondValue: {zip: '90832', country: 'US'} },
-        { key: 'address.zip', firstValue: '32952', secondValue: '90832' },
-        { key: 'catchPhrase', firstValue: 'ayyyyy!', secondValue: undefined },
-        { key: 'friends', firstValue: ['travis'], secondValue: ['john'] },
-        { key: 'friends.0', firstValue: 'travis', secondValue: 'john' },
-        { key: 'car', firstValue: undefined, secondValue: {make: 'toyota', model: 'rav4'} },
-        { key: 'car.make', firstValue: undefined, secondValue: 'toyota' },
-        { key: 'car.model', firstValue: undefined, secondValue: 'rav4' },
-      ]
 
-      expectEquivalent(diff, expectedDiff)
+      const expectedObjectAfterPut = {
+        woah: {
+          this: {
+            is: ['getting', { pretty: 'meh, not too deep' } ]
+          }
+        }
+      }
+      const nestedKeys = ['woah', 'this', 'is', '1', 'pretty']
+      const objectAfterPut = object.digAndPut(sampleObject, nestedKeys, 'meh, not too deep')
+
+      expectEquivalent( objectAfterPut, expectedObjectAfterPut )
     })
   })
 
