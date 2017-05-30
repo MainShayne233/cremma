@@ -168,6 +168,28 @@ describe('object', () => {
     })
   })
 
+  describe('keyPaths', () => {
+
+    it('should return an array of keypaths for the given object', () => {
+
+      const expectedKeyPaths = [
+        ['hi'],
+        ['i'],
+        ['i', 'have'],
+        ['i', 'have', 'some'],
+        ['i', 'also'],
+        ['i', 'also', '0'],
+        ['i', 'also', '1'],
+        ['that'],
+        ['that', 'is'],
+      ]
+
+      const keyPaths = object.keyPaths(sampleObject1)
+
+      expectEquivalent( keyPaths, expectedKeyPaths )
+    })
+  })
+
   describe('numberKeyedObjectToArray/1', () => {
 
     it('should return the object as an array', () => {

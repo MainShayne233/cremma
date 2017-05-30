@@ -155,6 +155,25 @@ export function groupBy(elements, fun) {
   return grouping
 }
 
+/** Returns the keypaths for the object
+ * @params {object} object - The object to get the keys from
+ * @returns {object}
+ * @example
+ * keyPaths( { a: { b: ['c'] } } )
+ * //=> [ ['a'], ['a', 'b'], ['a', 'b', '0']  ]
+ */
+export function keyPaths(object, parentKeys = []) {
+  const type = object.constructor
+  if (type !== Array && type !== Object) return [ parentKeys ]
+  let paths = []
+  if ( parentKeys.length ) paths = paths.concat( [parentKeys] )
+  for ( const key of Object.keys(object) ) {
+    const subKeyPaths = keyPaths(object[key], parentKeys.concat([key]) )
+    paths = paths.concat( subKeyPaths )
+  }
+  return paths
+}
+
 /**
  * Merges two objects into one new object
  * object2 will overwrite matching keys in object1

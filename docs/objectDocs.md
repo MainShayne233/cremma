@@ -17,6 +17,9 @@ Equivlanet means that every value at every level is equal in both objects</p>
 <dt><a href="#groupBy">groupBy()</a> ⇒ <code>object</code></dt>
 <dd><p>Returns an object of the elements grouped by the function</p>
 </dd>
+<dt><a href="#keyPaths">keyPaths()</a> ⇒ <code>object</code></dt>
+<dd><p>Returns the keypaths for the object</p>
+</dd>
 <dt><a href="#merge">merge()</a> ⇒ <code>object</code></dt>
 <dd><p>Merges two objects into one new object
 object2 will overwrite matching keys in object1</p>
@@ -115,6 +118,18 @@ Returns an object of the elements grouped by the function
 ```js
 groupBy([1, 1, 2, 3, 5, 8, 11], (val) => val % 2 ? 'odd' : 'even' )
 //=> {odd: [1, 1, 3, 5, 11], even: [2, 8]}
+```
+<a name="keyPaths"></a>
+
+## keyPaths() ⇒ <code>object</code>
+Returns the keypaths for the object
+
+**Kind**: global function  
+**Params**: <code>object</code> object - The object to get the keys from  
+**Example**  
+```js
+keyPaths( { a: { b: ['c'] } } )
+//=> [ ['a'], ['a', 'b'], ['a', 'b', '0']  ]
 ```
 <a name="merge"></a>
 
