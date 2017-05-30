@@ -80,6 +80,35 @@ export function dig(object, nestedKeys) {
 }
 
 /**
+ * Returns the object with the value put where the keys point to
+ * @param {object} object - The reference object
+ * @param {array<string>} keys - The keys that point to the location to put the value
+ * @param value - The value to put into the new object
+ * @returns {object}
+ * @example
+ * digAndPut({a: {b: 'c'}}, ['a', 'b'], 'd')
+ * //=> {a: {b: 'd'}}
+ * @example
+ * digAndPut({a: {b: 'c'}}, 'a.b', 'd')
+ * //=> {a: {b: 'd'}}
+ */
+export function digAndPut(object, argKeys, value) {
+  const keys = argKeys.constructor === Array ? argKeys : argKeys.split('.')
+  return doDigAndPut(object, keys, value)
+}
+
+function doDigAndPut(object, keys, value) {
+  if (keys.length === 0) return value
+  let mergeObject = {}
+  const [ firstKey, nextKey ] = keys.slice(0, 2)
+  const restOfKeys = keys.slice(1, keys.length)
+  mergeObject[firstKey] = doDigAndPut(object[firstKey], restOfKeys, value)
+  if ( nextKey && string.isNumberString(nextKey) ) 
+    mergeObject[firstKey] = numberKeyedObjectToArray(mergeObject[firstKey])
+  return merge(object, mergeObject)
+}
+
+/**
  * Returns true if objects are equivalent, false otherwise
  * Equivlanet means that every value at every level is equal in both objects
  * @params {object} object1 - First object
@@ -141,36 +170,6 @@ export function merge(object1, object2) {
   for ( const key of Object.keys(object1) ) newObject[key] = object1[key]
   for ( const key of Object.keys(object2) ) newObject[key] = object2[key]
   return newObject
-}
-
-/**
- * Returns the object with the value put where the keys point to
- * @param {object} object - The reference object
- * @param {array<string>} keys - The keys that point to the location to put the value
- * @param value - The value to put into the new object
- * @returns {object}
- * @example
- * digAndPut({a: {b: 'c'}}, ['a', 'b'], 'd')
- * //=> {a: {b: 'd'}}
- * * @example
- * digAndPut({a: {b: 'c'}}, 'a.b', 'd')
- * //=> {a: {b: 'd'}}
- */
-export function digAndPut(object, argKeys, value) {
-  const keys = argKeys.constructor === Array ? argKeys : argKeys.split('.')
-  return doDigAndPut(object, keys, value)
-}
-
-function doDigAndPut(object, keys, value) {
-  if (keys.length === 0) return value
-  let mergeObject = {}
-  const firstKey = keys[0]
-  const nextKey = keys[1]
-  const restOfKeys = keys.slice(1, keys.length)
-  mergeObject[firstKey] = doDigAndPut(object[firstKey], restOfKeys, value)
-  if ( nextKey && string.isNumberString(nextKey) ) 
-    mergeObject[firstKey] = numberKeyedObjectToArray(mergeObject[firstKey])
-  return merge(object, mergeObject)
 }
 
 /**

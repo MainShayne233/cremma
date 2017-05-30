@@ -7,6 +7,9 @@
 <dt><a href="#dig">dig()</a></dt>
 <dd><p>Returns the value stored in the object where the nested keys point to</p>
 </dd>
+<dt><a href="#digAndPut">digAndPut(object, keys, value)</a> ⇒ <code>object</code></dt>
+<dd><p>Returns the object with the value put where the keys point to</p>
+</dd>
 <dt><a href="#equivalent">equivalent()</a> ⇒ <code>boolean</code></dt>
 <dd><p>Returns true if objects are equivalent, false otherwise
 Equivlanet means that every value at every level is equal in both objects</p>
@@ -17,9 +20,6 @@ Equivlanet means that every value at every level is equal in both objects</p>
 <dt><a href="#merge">merge()</a> ⇒ <code>object</code></dt>
 <dd><p>Merges two objects into one new object
 object2 will overwrite matching keys in object1</p>
-</dd>
-<dt><a href="#digAndPut">digAndPut(object, keys, value)</a> ⇒ <code>object</code></dt>
-<dd><p>Returns the object with the value put where the keys point to</p>
 </dd>
 <dt><a href="#numberKeyedObjectToArray">numberKeyedObjectToArray()</a> ⇒ <code>array</code></dt>
 <dd><p>Returns the object as an array</p>
@@ -60,6 +60,29 @@ dig({a: {b: {c: 'd'}}}, ['a', 'b', 'c'])
 ```js
 dig({a: {b: {c: 'd'}}}, 'a.b.c')
 //=> 'd'
+```
+<a name="digAndPut"></a>
+
+## digAndPut(object, keys, value) ⇒ <code>object</code>
+Returns the object with the value put where the keys point to
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| object | <code>object</code> | The reference object |
+| keys | <code>array.&lt;string&gt;</code> | The keys that point to the location to put the value |
+| value |  | The value to put into the new object |
+
+**Example**  
+```js
+digAndPut({a: {b: 'c'}}, ['a', 'b'], 'd')
+//=> {a: {b: 'd'}}
+```
+**Example**  
+```js
+digAndPut({a: {b: 'c'}}, 'a.b', 'd')
+//=> {a: {b: 'd'}}
 ```
 <a name="equivalent"></a>
 
@@ -106,27 +129,6 @@ object2 will overwrite matching keys in object1
 ```js
 merge({woah: 'we', seeya: 'soon'}, {done: 'merged', seeya: 'later'})
 //=> {woah: 'we', done: 'merged', seeya: 'later'}
-```
-<a name="digAndPut"></a>
-
-## digAndPut(object, keys, value) ⇒ <code>object</code>
-Returns the object with the value put where the keys point to
-
-**Kind**: global function  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| object | <code>object</code> | The reference object |
-| keys | <code>array.&lt;string&gt;</code> | The keys that point to the location to put the value |
-| value |  | The value to put into the new object |
-
-**Example**  
-```js
-digAndPut({a: {b: 'c'}}, ['a', 'b'], 'd')
-//=> {a: {b: 'd'}}
-* @example
-digAndPut({a: {b: 'c'}}, 'a.b', 'd')
-//=> {a: {b: 'd'}}
 ```
 <a name="numberKeyedObjectToArray"></a>
 

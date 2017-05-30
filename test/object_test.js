@@ -54,8 +54,32 @@ describe('object', () => {
     })
   })
 
+  describe('digAndPut/3', () => {
+    it('should put the value in the object where the keys point to', () => {
+      const sampleObject = {
+        woah: {
+          this: {
+            is: ['getting', { pretty: 'deep' } ]
+          }
+        }
+      }
 
-  
+      const expectedObjectAfterPut = {
+        woah: {
+          this: {
+            is: ['getting', { pretty: 'meh, not too deep' } ]
+          }
+        }
+      }
+      const nestedKeys = ['woah', 'this', 'is', '1', 'pretty']
+      const objectAfterPut = object.digAndPut(sampleObject, nestedKeys, 'meh, not too deep')
+      const objectAfterPutWithStingKeys = object.digAndPut(sampleObject, nestedKeys.join('.'), 'meh, not too deep')
+
+      expectEquivalent( objectAfterPut, expectedObjectAfterPut )
+      expectEquivalent( objectAfterPutWithStingKeys, expectedObjectAfterPut )
+    })
+  })
+
   describe('dig/2', () => {
 
     it('should return the value stored in the object, using the array/string of keys to get to it', () => {
@@ -141,30 +165,6 @@ describe('object', () => {
       }
 
       expectEquivalent(mergedObject, expectedMergedObject)
-    })
-  })
-
-  describe('digAndPut/3', () => {
-    it('should put the value in the object where the keys point to', () => {
-      const sampleObject = {
-        woah: {
-          this: {
-            is: ['getting', { pretty: 'deep' } ]
-          }
-        }
-      }
-
-      const expectedObjectAfterPut = {
-        woah: {
-          this: {
-            is: ['getting', { pretty: 'meh, not too deep' } ]
-          }
-        }
-      }
-      const nestedKeys = ['woah', 'this', 'is', '1', 'pretty']
-      const objectAfterPut = object.digAndPut(sampleObject, nestedKeys, 'meh, not too deep')
-
-      expectEquivalent( objectAfterPut, expectedObjectAfterPut )
     })
   })
 
