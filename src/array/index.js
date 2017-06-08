@@ -53,8 +53,8 @@ export function last(array) {
  * @param {array} array - The array to be sorted
  * @param {func} sortFunc - The sorting function that returns a truthy value
  * @example
- * sort([5,6,3,4,8,2,9,5])
- * //=> [2, 3, 4, 5, 5, 6, 8, 9]
+ * sort([5,6,3,4,8,2,9,5], (x, y) => y < x)
+ * //=> [9, 8, 6, 5, 5, 4, 3, 2]
  * @example
  * sort(['woah', 'but', 'strings', 'are', 'arrays', 'already', 'woah'])
  * //=> ['already', 'are', 'arrays', 'but', 'strings', 'woah', 'woah']
