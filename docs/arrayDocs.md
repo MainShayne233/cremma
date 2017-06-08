@@ -10,6 +10,10 @@
 <dt><a href="#last">last(array)</a></dt>
 <dd><p>Returns the last element in an array</p>
 </dd>
+<dt><a href="#sort">sort(array, sortFunc)</a></dt>
+<dd><p>Sort function that uses boolean return values from the sort function to determine sorting
+Default sorting function is (x, y) =&gt; x &lt; y</p>
+</dd>
 </dl>
 
 <a name="dropAtIndex"></a>
@@ -71,4 +75,27 @@ last([1,2,3])
 ```js
 last([])
 //=> undefined 
+```
+<a name="sort"></a>
+
+## sort(array, sortFunc)
+Sort function that uses boolean return values from the sort function to determine sorting
+Default sorting function is (x, y) => x < y
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| array | <code>array</code> | The array to be sorted |
+| sortFunc | <code>func</code> | The sorting function that returns a truthy value |
+
+**Example**  
+```js
+sort([5,6,3,4,8,2,9,5])
+//=> [2, 3, 4, 5, 5, 6, 8, 9]
+```
+**Example**  
+```js
+sort(['woah', 'but', 'strings', 'are', 'arrays', 'already', 'woah'])
+//=> ['already', 'are', 'arrays', 'but', 'strings', 'woah', 'woah']
 ```

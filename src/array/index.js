@@ -46,3 +46,21 @@ export function equivalent(array1, array2) {
 export function last(array) {
   return array[ array.length - 1 ]
 }
+
+/**
+ * Sort function that uses boolean return values from the sort function to determine sorting
+ * Default sorting function is (x, y) => x < y
+ * @param {array} array - The array to be sorted
+ * @param {func} sortFunc - The sorting function that returns a truthy value
+ * @example
+ * sort([5,6,3,4,8,2,9,5])
+ * //=> [2, 3, 4, 5, 5, 6, 8, 9]
+ * @example
+ * sort(['woah', 'but', 'strings', 'are', 'arrays', 'already', 'woah'])
+ * //=> ['already', 'are', 'arrays', 'but', 'strings', 'woah', 'woah']
+ */
+export function sort(array, sortFunc = (x, y) => x < y) {
+  return array.sort((x, y) => {
+    return sortFunc(x, y) ? -1 : 1
+  })
+}
