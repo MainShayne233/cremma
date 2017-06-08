@@ -1,10 +1,10 @@
 import { expect } from 'chai'
 import { string } from '../src'
-//import doctest from '../docs/doctest'
+import jsdoctest from 'jsdoc-test'
 
 describe('string', () => {
 
-//  describe('doctests', () => doctest('./src/string/index.js') )
+  describe('doctests', () => jsdoctest('./src/string/index.js') )
 
   describe('isNumberString/1', () => {
     it('should return true if string is number, false otherwise', () => {

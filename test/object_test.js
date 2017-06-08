@@ -3,11 +3,11 @@ import { object } from '../src'
 import { sampleObject1, sampleObject2 } from './support/fixtures/objects'
 import { sampleArray1, sampleArray2 } from './support/fixtures/arrays'
 import { expectEquivalent, expectInequivalent } from './support/helpers'
-//import doctest from '../docs/doctest'
+import jsdoctest from 'jsdoc-test'
 
 describe('object', () => {
 
- // describe('doctests', () => doctest('./src/object/index.js') )
+  describe('doctests', () => jsdoctest('./src/object/index.js') )
  
   describe('diff/2', () => {
 

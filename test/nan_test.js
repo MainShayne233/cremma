@@ -1,7 +1,10 @@
 import { expect } from 'chai'
 import { nan } from '../src'
+import jsdoctest from 'jsdoc-test'
 
 describe('nan', () => {
+
+  describe('doctests', () => jsdoctest('./src/nan/index.js') )
 
   describe('isNaN/1', () => {
 

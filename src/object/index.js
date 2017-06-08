@@ -197,7 +197,7 @@ export function merge(object1, object2) {
  * @returns {array}
  * @example
  * numberKeyedObjectToArray({1: 'one', 2: 'two'})
- * //=> [ undefined, 'one', 'two' ]
+ * //=> [ , 'one', 'two' ]
  */
 export function numberKeyedObjectToArray(object) {
   let array = []

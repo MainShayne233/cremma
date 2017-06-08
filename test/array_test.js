@@ -1,8 +1,11 @@
 import { expect } from 'chai'
 import { array } from '../src'
 import { expectEquivalent, expectInequivalent } from './support/helpers'
+import jsdoctest from 'jsdoc-test'
 
 describe('array', () => {
+
+  describe('doctests', () => jsdoctest('./src/array/index.js') )
 
   describe('dropAtIndex/2', () => {
 
