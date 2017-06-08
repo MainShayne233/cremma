@@ -155,5 +155,5 @@ Returns the object as an array
 **Example**  
 ```js
 numberKeyedObjectToArray({1: 'one', 2: 'two'})
-//=> [ undefined, 'one', 'two' ]
+//=> [ , 'one', 'two' ]
 ```
