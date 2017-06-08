@@ -1,6 +1,5 @@
 import { expect } from 'chai'
 import { array } from '../src'
-import { expectEquivalent, expectInequivalent } from './support/helpers'
 import jsdoctest from 'jsdoc-test'
 
 describe('array', () => {
@@ -10,20 +9,21 @@ describe('array', () => {
   describe('dropAtIndex/2', () => {
 
     it('should return the array with the specified index dropped', () => {
-      expectEquivalent(array.dropAtIndex([], 1), [])
-      expectEquivalent(array.dropAtIndex([0], 1), [0] )
-      expectEquivalent(array.dropAtIndex([0], 0), [] )
-      expectEquivalent(array.dropAtIndex([1, 1, 2, 3, 5, 8], 4), [1, 1, 2, 3, 8] )
-      expectEquivalent(array.dropAtIndex([1, 1, 2, 3, 5, 8], 5), [1, 1, 2, 3, 5] )
+      expect(array.dropAtIndex([], 1)).to.eql([])
+      expect(array.dropAtIndex([0], 1)).to.eql([0])
+      expect(array.dropAtIndex([0], 0)).to.eql([])
+      expect(array.dropAtIndex([1, 1, 2, 3, 5, 8], 4)).to.eql([1, 1, 2, 3, 8])
+      expect(array.dropAtIndex([1, 1, 2, 3, 5, 8], 5)).to.eql([1, 1, 2, 3, 5])
     })
   })
 
   describe('equivalent/2', () => {
 
     it('should return true if two arrays are equivalent, false otherwise', () => {
-      expectEquivalent([], [])
-      expectEquivalent([1, {hi: 'there'}], [1, {hi: 'there'}])
-      expectInequivalent([ [1] ], [ [2] ])
+      expect( array.equivalent([], []) ).to.equal(true)
+      expect( array.equivalent([1, 2], [1, 2])).to.equal(true)
+      expect( array.equivalent([1, {hi: 'there'}], [1, {hi: 'there'}])).to.equal(true)
+      expect( array.equivalent([[1]], [[2]])).to.equal(false)
     })
   })
 

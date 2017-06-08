@@ -2,7 +2,6 @@ import { expect } from 'chai'
 import { object } from '../src'
 import { sampleObject1, sampleObject2 } from './support/fixtures/objects'
 import { sampleArray1, sampleArray2 } from './support/fixtures/arrays'
-import { expectEquivalent, expectInequivalent } from './support/helpers'
 import jsdoctest from 'jsdoc-test'
 
 describe('object', () => {
@@ -50,7 +49,7 @@ describe('object', () => {
         { key: 'car.model', firstValue: undefined, secondValue: 'rav4' },
       ]
 
-      expectEquivalent(diff, expectedDiff)
+      expect(diff).to.eql(expectedDiff)
     })
   })
 
@@ -75,8 +74,8 @@ describe('object', () => {
       const objectAfterPut = object.digAndPut(sampleObject, nestedKeys, 'meh, not too deep')
       const objectAfterPutWithStingKeys = object.digAndPut(sampleObject, nestedKeys.join('.'), 'meh, not too deep')
 
-      expectEquivalent( objectAfterPut, expectedObjectAfterPut )
-      expectEquivalent( objectAfterPutWithStingKeys, expectedObjectAfterPut )
+      expect(objectAfterPut).to.eql(expectedObjectAfterPut)
+      expect(objectAfterPutWithStingKeys).to.eql(expectedObjectAfterPut)
     })
   })
 
@@ -134,7 +133,7 @@ describe('object', () => {
 
       const grouped = object.groupBy(people, (person) => person.age)
 
-      expectEquivalent(grouped, expectedGroupedPeople)
+      expect(grouped).to.eql(expectedGroupedPeople)
     })
   })
 
@@ -164,7 +163,7 @@ describe('object', () => {
         },
       }
 
-      expectEquivalent(mergedObject, expectedMergedObject)
+      expect(mergedObject).to.eql(expectedMergedObject)
     })
   })
 
@@ -186,7 +185,7 @@ describe('object', () => {
 
       const keyPaths = object.keyPaths(sampleObject1)
 
-      expectEquivalent( keyPaths, expectedKeyPaths )
+      expect(keyPaths).to.eql(expectedKeyPaths)
     })
   })
 
@@ -216,7 +215,7 @@ describe('object', () => {
       ]
 
       const arrayified = object.numberKeyedObjectToArray(numberKeyedObject)
-      expectEquivalent(arrayified, expectedArray)
+      expect(arrayified).to.eql(expectedArray)
     })
   })
 })
