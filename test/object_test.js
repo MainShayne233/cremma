@@ -77,6 +77,29 @@ describe('object', () => {
       expect(objectAfterPut).to.eql(expectedObjectAfterPut)
       expect(objectAfterPutWithStingKeys).to.eql(expectedObjectAfterPut)
     })
+
+    it('README example', () => {
+      const sampleObject = {
+        hi: 'there',
+        i: {
+          have: {
+            some: 'data',
+          },
+          also: ['a', 'array'],
+        },
+      }
+      
+      const newObject = object.digAndPut(sampleObject, ['i', 'also', '0'], 'an')
+      expect(newObject).to.eql({
+        hi: 'there',
+        i: {
+          have: {
+            some: 'data',
+          },
+          also: ['an', 'array'],
+        },
+      })
+    })
   })
 
   describe('dig/2', () => {
