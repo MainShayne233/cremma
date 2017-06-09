@@ -27,7 +27,7 @@ const sampleObject = {
   },
 }
 
-const newObject = object.digAndPut(sampleObject, ['i', 'also', '1'], 'an')
+const newObject = object.digAndPut(sampleObject, ['i', 'also', '0'], 'an')
 // #=>
 // {
 //   hi: 'there',
