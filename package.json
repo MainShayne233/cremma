@@ -1,6 +1,6 @@
 {
   "name": "cremma",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Helper functions for Javascript objects and stuff",
   "entry": "index.js",
   "scripts": {
@@ -36,5 +36,8 @@
     "webpack": "^2.5.1",
     "webpack-dev-server": "^2.4.5",
     "write-file-webpack-plugin": "^4.0.2"
+  },
+  "dependencies": {
+    "has-flag": "^2.0.0"
   }
 }

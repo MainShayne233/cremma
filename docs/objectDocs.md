@@ -87,6 +87,11 @@ digAndPut({a: {b: 'c'}}, ['a', 'b'], 'd')
 digAndPut({a: {b: 'c'}}, 'a.b', 'd')
 //=> {a: {b: 'd'}}
 ```
+**Example**  
+```js
+digAndPut({a: ['b', 'c']}, 'a.1', 'd')
+//=> {a: ['b', 'd']}
+```
 <a name="equivalent"></a>
 
 ## equivalent() ⇒ <code>boolean</code>

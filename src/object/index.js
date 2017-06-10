@@ -91,6 +91,9 @@ export function dig(object, nestedKeys) {
  * @example
  * digAndPut({a: {b: 'c'}}, 'a.b', 'd')
  * //=> {a: {b: 'd'}}
+ * @example
+ * digAndPut({a: ['b', 'c']}, 'a.1', 'd')
+ * //=> {a: ['b', 'd']}
  */
 export function digAndPut(object, argKeys, value) {
   const keys = argKeys.constructor === Array ? argKeys : argKeys.split('.')
@@ -103,7 +106,7 @@ function doDigAndPut(object, keys, value) {
   const [ firstKey, nextKey ] = keys.slice(0, 2)
   const restOfKeys = keys.slice(1, keys.length)
   mergeObject[firstKey] = doDigAndPut(object[firstKey], restOfKeys, value)
-  if ( nextKey && string.isNumberString(nextKey) ) 
+  if ( nextKey !== undefined && string.isNumberString(nextKey) )
     mergeObject[firstKey] = numberKeyedObjectToArray(mergeObject[firstKey])
   return merge(object, mergeObject)
 }

@@ -10,7 +10,9 @@
  * //=> false
  */
 export function isNumberString(string) {
-  const trimmedString = string.trim()
+  const { constructor } = string
+  if (constructor !== String && constructor !== Number) return false
+  const trimmedString = `${string}`.trim()
   return Math.abs( parseInt( trimmedString  ) ) >= 0 || trimmedString === 'NaN'
 }
 
